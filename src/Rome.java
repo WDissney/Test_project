@@ -19,11 +19,11 @@ public enum Rome {
 
         this.arabian = arabian;
     }
-    public int getArabian(){
+    int getArabian(){
 
         return arabian;
     }
-    public static Rome getName (int num){
+    static Rome getName(int num){
         for (Rome x : values()){
             if (x.getArabian() == num){
                 return x;
