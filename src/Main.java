@@ -10,16 +10,20 @@ public class Main {
     }
 
     public static String calc(String input) {
-        String[]prim = input.split(" ", 3);
+        String[]prim = input.split(" ");
             boolean found = false;
             boolean found2 = false;
-            try {
-                for (Rome x : Rome.values()) {
-                    if (x.toString().equals(prim[0])) {
-                        found = true;
-                        break;
+            if (prim.length > 3){
+                input = "формат математической операции не удовлетворяет заданию - два операнда и один оператор (+, -, /, *)";
+            }
+            else {
+                try {
+                    for (Rome x : Rome.values()) {
+                        if (x.toString().equals(prim[0])) {
+                            found = true;
+                            break;
+                        }
                     }
-                }
                     for (Rome y : Rome.values()) {
                         if (y.toString().equals(prim[2])) {
                             found2 = true;
@@ -33,10 +37,9 @@ public class Main {
                             input = "Числа больше 10ти нельзя";
                         } else {
                             int answer = calculate(num, prim[1], num2);
-                            if(answer <= 0){
+                            if (answer <= 0) {
                                 input = "в римской системе нет отрицательных чисел";
-                            }
-                            else {
+                            } else {
                                 input = String.valueOf(Rome.getName(answer));
                             }
                         }
@@ -48,16 +51,12 @@ public class Main {
                         } else {
                             input = Integer.toString(calculate(num, prim[1], num2));
                         }
-                    }
-                    else {
+                    } else {
                         input = "используются одновременно разные системы счисления";
                     }
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    input = "строка не является математической операцией";
                 }
-            catch (NumberFormatException e){
-                input = "формат математической операции не удовлетворяет заданию - два операнда и один оператор (+, -, /, *)";
-            }
-            catch (ArrayIndexOutOfBoundsException e){
-                input = "строка не является математической операцией";
             }
         return input;
     }
