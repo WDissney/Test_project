@@ -16,11 +16,9 @@ public enum Rome {
     ;
     private final int arabian;
     Rome(int arabian){
-
         this.arabian = arabian;
     }
     int getArabian(){
-
         return arabian;
     }
     static Rome getName(int num){
@@ -31,5 +29,4 @@ public enum Rome {
         }
         return null;
     }
-
 }
